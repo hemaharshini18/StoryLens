@@ -25,7 +25,7 @@ StoryLens turns any photo into a short, creative story (or poem) and narrates it
 
 ```bash
 # 1. Clone repo & enter folder
-$ git clone https://github.com/<your-user>/storylens.git
+$ git clone https://github.com/hemaharshini18/StoryLens.git
 $ cd storylens
 
 # 2. Create Python venv (recommended)
