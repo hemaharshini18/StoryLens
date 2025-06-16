@@ -1,0 +1,4 @@
+body { font-family: system-ui, sans-serif; max-width: 700px; margin: auto; padding: 2rem; }
+h1 { color: #2c3e50; }
+button { padding: 0.5rem 1rem; margin-top: 1rem; }
+#story { margin-top: 1.5rem; font-size: 1.1rem; white-space: pre-wrap; }

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>StoryLens</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+    <h1>StoryLens</h1>
+    <p>Select a photo and let AI tell its story.</p>
+
+    <form id="uploadForm">
+        <input type="file" name="photo" accept="image/*" required />
+        <button type="submit">Generate</button>
+    </form>
+
+    <h2 id="status"></h2>
+    <div id="story"></div>
+    <audio id="audio" controls style="display:none;"></audio>
+
+    <script>
+    const form = document.getElementById('uploadForm');
+    const status = document.getElementById('status');
+    const storyEl = document.getElementById('story');
+    const audioEl = document.getElementById('audio');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        status.textContent = 'Generating…';
+        storyEl.textContent = '';
+        audioEl.style.display = 'none';
+
+        const formData = new FormData(form);
+        try {
+            const res = await fetch('/generate', { method: 'POST', body: formData });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error || 'Failed');
+
+            status.textContent = 'Done!';
+            storyEl.textContent = data.story;
+            audioEl.src = data.audio_url;
+            audioEl.style.display = 'block';
+            audioEl.play();
+        } catch (err) {
+            status.textContent = 'Error: ' + err.message;
+        }
+    });
+    </script>
+</body>
+</html>

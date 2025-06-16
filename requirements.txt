@@ -1,0 +1,5 @@
+flask>=3.0
+pillow
+transformers>=4.40
+torch>=2.1
+TTS==0.22.0  # coqui-ai TTS library
